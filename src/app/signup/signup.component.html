@@ -1,0 +1,64 @@
+
+<div class="container">
+  <div class="vh-90 row justify-content-center align-items-center">
+    <div class="col-12 col-lg-4">
+      <div class="right-section">
+        <div class="form-wrapper">
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="user-form">
+            <div class="input-field mb-3">
+              <label for="fullName" class="form-label">Enter full name</label>
+              <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" formControlName="fullName"
+                [ngClass]="{ 'is-invalid': hasError('fullName') }" />
+
+              <div class="invalid-feedback text-start"
+                *ngIf="signupForm.get('fullName')?.hasError('required') && signupForm.get('fullName')?.touched">
+                Full name is required
+              </div>
+            </div>
+            <div class="input-field mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your email address"
+                formControlName="email" [ngClass]="{ 'is-invalid': hasError('email') }" />
+
+              <div class="invalid-feedback text-start">Email is required</div>
+            </div>
+            <div class="input-field position-relative mb-3">
+              <label for="phone" class="form-label">Phone number</label>
+              <input type="text" class="form-control" id="phone" placeholder="Enter your phone number" formControlName="phone"
+                [ngClass]="{ 'is-invalid': hasError('phone') }" />
+
+              <div class="invalid-feedback text-start">Phone number is required</div>
+            </div>
+            <div class="input-field position-relative mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input [type]="passwordType" class="form-control" id="password" placeholder="Enter your password"
+                formControlName="password" [ngClass]="{ 'is-invalid': hasError('password') }" />
+
+              <div class="eye-wrapper">
+                <img src="assets/icons/eye-2.png" *ngIf="passwordType === 'password'" class="fa-solid fa-eye"
+                  (click)="showPassword('password')" />
+                <img src="assets/icons/eye-slash.png" *ngIf="passwordType === 'text'" class="fa-solid fa-eye-slash"
+                  (click)="showPassword('text')" />
+              </div>
+
+              <div class="invalid-feedback text-start">
+                {{ getErrorMessage("password") }}
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-1"
+              [disabled]="loading">
+              <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              SIGN UP <img src="assets/icons/arrow-right.svg" />
+            </button>
+          </form>
+            <p class="note">
+              Already have a account?
+              <a routerLink="/login">Login Here!</a>
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

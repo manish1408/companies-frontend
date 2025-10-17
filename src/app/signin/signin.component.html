@@ -1,0 +1,50 @@
+
+<div *ngIf="showLoginForm" class="container">
+  <div class="vh-90 row justify-content-center align-items-center">
+    <div class="col-12 col-lg-4">
+      <div class="right-section">
+
+        <div class="form-wrapper">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="user-form">
+            <div class="input-field mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your email address"
+                formControlName="email" [ngClass]="{ 'is-invalid': hasError('email') }" />
+
+              <div class="invalid-feedback text-start">Email is required</div>
+            </div>
+            <div class="input-field position-relative mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input [type]="passwordType" class="form-control" id="password" placeholder="Enter your password"
+                formControlName="password" [ngClass]="{ 'is-invalid': hasError('password') }" />
+
+              <div class="eye-wrapper">
+                <img src="assets/icons/eye-2.png" *ngIf="passwordType === 'password'" class="fa-solid fa-eye"
+                  (click)="showPassword('password')" />
+                <img src="assets/icons/eye-slash.png" *ngIf="passwordType === 'text'" class="fa-solid fa-eye-slash"
+                  (click)="showPassword('text')" />
+              </div>
+
+              <div class="invalid-feedback text-start">
+                Password is required
+              </div>
+            </div>
+           
+
+            <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-1"
+              [disabled]="loading">
+              <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              SIGN IN <img src="assets/icons/arrow-right.svg" />
+            </button>
+          </form>
+          <p class="note">
+            Don't have a account?
+            <a routerLink="/signup">Sign Up Here!</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

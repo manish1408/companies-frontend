@@ -1,0 +1,66 @@
+<ng-container *ngIf="!isLoggedIn">
+  <main class="auth-content">
+    <router-outlet></router-outlet>
+  </main>
+</ng-container>
+
+<ng-container *ngIf="isLoggedIn">
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <aside id="sidebar" [class.collapsed]="isCollapsed">
+      <div class="w-100">
+        <!-- Sidebar Navigation -->
+
+        <div class="d-flex align-items-center justify-content-between">
+          <h2 class="sidebar-logo-text">Company name</h2>
+          <img src="assets/icons/arrow-square-left.svg" (click)="toggleSidebar()" class="cursor-pointer" />
+        </div>
+
+        <ul class="sidebar-nav mt-4">
+          <!-- Installation -->
+          <li class="sidebar-item">
+            <a routerLink="/companies" routerLinkActive="active-link" class="sidebar-link" #rla="routerLinkActive">
+              Companies
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <!-- Main Component -->
+    <div class="main">
+      <nav class="navbar navbar-expand px-3 justify-content-between top-nav">
+        <div class="d-flex align-items-center justify-content-between">
+          <img *ngIf="isCollapsed" src="assets/icons/arrow-square-left.svg" (click)="toggleSidebar()"
+            class="cursor-pointer collapse-arrow me-2" />
+        </div>
+        <div class="header__dropdown">
+          <div class="dropdown">
+            <button class="btn dropdown-toggle profile-dropdown m-0" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <img [src]="'assets/icons/profile-circle-2.svg'" class="avatar-img" />
+              <h4 *ngIf="user?.name">
+                {{ user?.name }}
+              </h4>
+              <img class="down-icon" src="assets/icons/arrow-down.svg" />
+            </button>
+            <ul class="dropdown-menu user-drop p-0" aria-labelledby="dropdownMenuButton1">
+              <div style="border-bottom: 1px solid #dfe9f2"></div>
+
+              <li>
+                <a class="dropdown-item cursor-pointer" (click)="signOut()">
+                  <img src="assets/icons/log-out.svg
+                " />
+                  Signout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <main class="content px-2">
+        <div class="container-fluid">
+          <router-outlet></router-outlet>
+        </div>
+      </main>
+    </div>
+  </div>
+</ng-container>
