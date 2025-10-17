@@ -26,9 +26,6 @@ export class AuthenticationService {
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('COMPANY-USER-TOKEN');
-    const user = JSON.parse(localStorage.getItem('COMPANY-USER') || '{}');
-  
-    // ✅ User is authenticated only if they have a token AND are fully onboarded
     return !!token 
   }
  

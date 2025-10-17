@@ -69,7 +69,7 @@ export class SigninComponent implements OnDestroy {
             if (res.success) {
               localStorage.setItem(
                 'COMPANY-USER-TOKEN',
-                res.data.authToken
+                res.data.token
               );
               localStorage.setItem(
                 'COMPANY-USER',
