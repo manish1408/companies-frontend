@@ -61,6 +61,7 @@ export class CompaniesComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
+    this.getCompanies();
   }
 
   initializeForm(): void {
@@ -77,6 +78,13 @@ export class CompaniesComponent implements OnInit {
     });
   }
 
+  getCompanies(): void {
+    this.companyService.getCompanies().subscribe({
+      next: (res) => {
+        this.companies = res.data.companies || [];
+      }
+    });
+  }
   hasError(controlName: string): boolean {
     const control = this.companyForm.get(controlName);
     return !!(control && control.invalid && control.touched);
