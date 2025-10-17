@@ -96,49 +96,49 @@
 
               <!-- Company Post/Zip Code -->
               <div class="col-md-6 mb-3">
-                <label for="postCode" class="form-label">Company Post/Zip Code</label>
-                <input type="text" class="form-control" id="postCode" formControlName="postCode" 
-                       placeholder="Enter post/zip code" [ngClass]="{ 'is-invalid': hasError('postCode') }">
-                <div class="invalid-feedback" *ngIf="hasError('postCode')">
+                <label for="zip" class="form-label">Company Post/Zip Code</label>
+                <input type="text" class="form-control" id="zip" formControlName="zip" 
+                       placeholder="Enter post/zip code" [ngClass]="{ 'is-invalid': hasError('zip') }">
+                <div class="invalid-feedback" *ngIf="hasError('zip')">
                   Post/Zip code is required
                 </div>
               </div>
 
               <!-- Company Country -->
               <div class="col-md-6 mb-3">
-                <label for="companyCountry" class="form-label">Company Country</label>
-                <select class="form-select" id="companyCountry" formControlName="companyCountry" 
-                        [ngClass]="{ 'is-invalid': hasError('companyCountry') }">
+                <label for="country" class="form-label">Company Country</label>
+                <select class="form-select" id="country" formControlName="country" 
+                        [ngClass]="{ 'is-invalid': hasError('country') }">
                   <option value="">Select Country</option>
                   <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
                 </select>
-                <div class="invalid-feedback" *ngIf="hasError('companyCountry')">
+                <div class="invalid-feedback" *ngIf="hasError('country')">
                   Company country is required
                 </div>
               </div>
 
               <!-- Number of Directors -->
               <div class="col-md-6 mb-3">
-                <label for="numberOfDirectors" class="form-label">Number of Directors</label>
-                <select class="form-select" id="numberOfDirectors" formControlName="numberOfDirectors" 
-                        [ngClass]="{ 'is-invalid': hasError('numberOfDirectors') }">
+                <label for="directors" class="form-label">Number of Directors</label>
+                <select class="form-select" id="directors" formControlName="directors" 
+                        [ngClass]="{ 'is-invalid': hasError('directors') }">
                   <option value="">Select number</option>
                   <option *ngFor="let num of directorNumbers" [value]="num">{{ num }}</option>
                 </select>
-                <div class="invalid-feedback" *ngIf="hasError('numberOfDirectors')">
+                <div class="invalid-feedback" *ngIf="hasError('directors')">
                   Number of directors is required
                 </div>
               </div>
 
               <!-- Number of Shareholders -->
               <div class="col-md-6 mb-3">
-                <label for="numberOfShareholders" class="form-label">Number of Shareholders</label>
-                <select class="form-select" id="numberOfShareholders" formControlName="numberOfShareholders" 
-                        [ngClass]="{ 'is-invalid': hasError('numberOfShareholders') }">
+                <label for="shareholders" class="form-label">Number of Shareholders</label>
+                <select class="form-select" id="shareholders" formControlName="shareholders" 
+                        [ngClass]="{ 'is-invalid': hasError('shareholders') }">
                   <option value="">Select number</option>
                   <option *ngFor="let num of shareholderNumbers" [value]="num">{{ num }}</option>
                 </select>
-                <div class="invalid-feedback" *ngIf="hasError('numberOfShareholders')">
+                <div class="invalid-feedback" *ngIf="hasError('shareholders')">
                   Number of shareholders is required
                 </div>
               </div>
@@ -155,10 +155,10 @@
 
               <!-- Company SEC Code -->
               <div class="col-12 mb-3">
-                <label for="companySecCode" class="form-label">Company SEC Code</label>
-                <input type="text" class="form-control" id="companySecCode" formControlName="companySecCode" 
-                       placeholder="Enter SEC code" [ngClass]="{ 'is-invalid': hasError('companySecCode') }">
-                <div class="invalid-feedback" *ngIf="hasError('companySecCode')">
+                <label for="secCode" class="form-label">Company SEC Code</label>
+                <input type="text" class="form-control" id="secCode" formControlName="secCode" 
+                       placeholder="Enter SEC code" [ngClass]="{ 'is-invalid': hasError('secCode') }">
+                <div class="invalid-feedback" *ngIf="hasError('secCode')">
                   SEC code is required
                 </div>
               </div>

@@ -38,12 +38,12 @@ export class CompaniesComponent implements OnInit {
       jurisdiction: ['', Validators.required],
       companyName: ['', [Validators.required, Validators.minLength(2)]],
       companyAddress: ['', Validators.required],
-      postCode: ['', Validators.required],
-      companyCountry: ['', Validators.required],
-      numberOfDirectors: ['', Validators.required],
-      numberOfShareholders: ['', Validators.required],
+      zip: ['', Validators.required],
+      country: ['', Validators.required],
+      directors: ['', Validators.required],
+      shareholders: ['', Validators.required],
       companyActivities: ['', Validators.required],
-      companySecCode: ['', Validators.required]
+      secCode: ['', Validators.required]
     });
   }
 
@@ -63,15 +63,17 @@ export class CompaniesComponent implements OnInit {
     if (this.companyForm.valid) {
       this.loading = true;
       
-      // Prepare the company data
+      // Prepare the company data according to the payload structure
       const companyData = {
-        _id: Date.now().toString(), // Simple ID generation
-        ...this.companyForm.value,
-        status: 'Incorporation Requested', // Default status
-        dateOfIncorporation: 'NA', // Default for new companies
-        companyWebsite: '', // Default empty for now
-        additionalInfo: this.companyForm.value.companyActivities,
-        createdAt: new Date().toISOString()
+        jurisdiction: this.companyForm.value.jurisdiction,
+        companyName: this.companyForm.value.companyName,
+        companyAddress: this.companyForm.value.companyAddress,
+        zip: this.companyForm.value.zip,
+        country: this.companyForm.value.country,
+        directors: this.companyForm.value.directors,
+        shareholders: this.companyForm.value.shareholders,
+        companyActivities: this.companyForm.value.companyActivities,
+        secCode: this.companyForm.value.secCode
       };
 
       // Add to companies array instead of API call
