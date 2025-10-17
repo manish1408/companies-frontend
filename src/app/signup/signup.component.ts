@@ -107,7 +107,7 @@ export class SignupComponent {
         email: this.signupForm.value.email,
         phone: this.signupForm.value.phone,
         password: this.signupForm.value.password,
-        userType: "company",
+        userType: "user",
       };
       this.authService.signup(reqObj)
         .pipe(finalize(() => (this.loading = false)))
