@@ -20,38 +20,7 @@ export class CompaniesComponent implements OnInit {
   shareholderNumbers = Array.from({ length: 10 }, (_, i) => i + 1);
 
   // Dummy company data based on the image
-  companies: any[] = [
-    {
-      _id: '1',
-      companyName: 'Memecoin Limited',
-      status: 'Incorporated',
-      jurisdiction: 'UK',
-      dateOfIncorporation: '01-01-2025',
-      companyAddress: '123 London Street, London, UK',
-      postCode: 'SW1A 1AA',
-      companyCountry: 'UK',
-      numberOfDirectors: 2,
-      numberOfShareholders: 3,
-      companyActivities: 'Cryptocurrency and blockchain technology services',
-      companySecCode: 'SEC001',
-      createdAt: '2025-01-01T00:00:00.000Z'
-    },
-    {
-      _id: '2',
-      companyName: 'Memecoin Limited',
-      status: 'Incorporation Requested',
-      jurisdiction: 'BVI',
-      dateOfIncorporation: 'NA',
-      companyAddress: '456 Tortola Road, Road Town, BVI',
-      postCode: 'VG1110',
-      companyCountry: 'BVI',
-      numberOfDirectors: 1,
-      numberOfShareholders: 2,
-      companyActivities: 'Digital currency trading and investment services',
-      companySecCode: 'SEC002',
-      createdAt: '2025-01-15T00:00:00.000Z'
-    }
-  ];
+  companies: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -106,12 +75,20 @@ export class CompaniesComponent implements OnInit {
       };
 
       // Add to companies array instead of API call
-      this.companies.push(companyData);
+      this.companyService.createCompany(companyData).subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.getCompanies();
+            this.toastr.success('Company created successfully!');
+            this.companyForm.reset();
+            this.closeModal();
+          } else {
+            this.toastr.error(res.message || 'Something went wrong');
+          }
+        }
+      });
       
       this.loading = false;
-      this.toastr.success('Company created successfully!');
-      this.companyForm.reset();
-      this.closeModal();
     } else {
       // Mark all fields as touched to show validation errors
       this.companyForm.markAllAsTouched();
