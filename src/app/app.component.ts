@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { AuthenticationService } from './_services/authentication.service';
-import { UserService } from './_services/user.service';
 import { Subject, finalize, takeUntil } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -29,7 +28,6 @@ export class AppComponent {
   constructor(
     private router: Router,
     private authService: AuthenticationService,
-    private userService: UserService,
     private fb: FormBuilder,
     private toastr: ToastrService,
   ) {

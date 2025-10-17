@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../_services/authentication.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from '../_services/user.service';
 import { Title } from '@angular/platform-browser';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { finalize } from 'rxjs';
@@ -67,7 +66,7 @@ export class SigninComponent implements OnDestroy {
         .pipe(finalize(() => (this.loading = false)))
         .subscribe({
           next: (res) => {
-            if (res.result) {
+            if (res.success) {
               localStorage.setItem(
                 'COMPANY-USER-TOKEN',
                 res.data.authToken
@@ -79,7 +78,7 @@ export class SigninComponent implements OnDestroy {
               this.router.navigate(['/companies']);
               this.loading = false
             } else {
-              this.toastr.error(res.message);
+              this.toastr.error(res.message || 'Something went wrong');
             }
           },
           error: (err) => {

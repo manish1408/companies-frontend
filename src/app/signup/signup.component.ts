@@ -113,10 +113,10 @@ export class SignupComponent {
         .pipe(finalize(() => (this.loading = false)))
         .subscribe({
           next: (res) => {
-            if (res.result) {
+            if (res.success) {
               this.router.navigate(['/login']);
             } else {
-              this.toastr.error(res.message);
+              this.toastr.error(res.message || 'Something went wrong');
             }
           },
           error: (err) => {
